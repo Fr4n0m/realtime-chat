@@ -4,14 +4,16 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite & node --watch ./server/index.js",
+    "dev": "concurrently \"vite\" \"node --watch ./server/index.js\"",
     "build": "vite build",
+    "start": "node server/index.js",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "vite": "^5.4.8"
   },
-  "main": "main.js",
+  "main": "server/index.js",
   "dependencies": {
     "esbuild": "^0.21.5",
     "express": "^4.21.1",
