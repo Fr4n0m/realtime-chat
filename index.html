@@ -30,12 +30,12 @@
       "https://realtime-chat-ten-nu.vercel.app/",
     ];
 
-    const socket = io(allowedOrigins, {
+    const socket = io(allowedOrigins /* , {
       auth: {
         username: await getUsername(),
         serverOffset: 0
       }
-    });
+    } */);
 
     const form = document.getElementById('form')
     const input = document.getElementById('input')
