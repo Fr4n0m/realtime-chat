@@ -1,0 +1,132 @@
+@import "darkmode-button.css";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: #e5e5e5;
+    --chat-background: #fff;
+    --input-background: #f0f0f0;
+    --button-background: #007bff;
+    --button-hover-background: #0056b3;
+    --text-color: #333;
+    --message-odd-background: #e7f3ff;
+    --message-even-background: #d1e7dd;
+}
+
+.dark-mode {
+    --background-color: #1e1e1e;
+    --chat-background: #2b2b2b;
+    --input-background: #3c3c3c;
+    --button-background: #007bff;
+    --button-hover-background: #0056b3;
+    --text-color: #fff;
+    --message-odd-background: #444;
+    --message-even-background: #555;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+#chat {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: var(--chat-background);
+    width: 100%;
+    max-width: 400px;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 16px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+#messages>li {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+#messages>li:nth-child(odd) {
+    background: var(--message-odd-background);
+}
+
+#messages>li:nth-child(even) {
+    background: var(--message-even-background);
+}
+
+#form {
+    display: flex;
+    padding: 10px;
+    background: var(--input-background);
+}
+
+#input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    flex: 1;
+    background-color: var(--input-background);
+    padding: 10px;
+    margin-right: 10px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+#input:focus {
+    border: 1px solid var(--button-background);
+}
+
+#form>button {
+    background: var(--button-background);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#form>button:hover {
+    background: var(--button-hover-background);
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
+
+#toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--button-background);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#toggle-button:hover {
+    background: var(--button-hover-background);
+}

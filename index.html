@@ -5,96 +5,89 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
   <title>Realtime - Chat</title>
-
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    :root {
-      color-scheme: light dark;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      display: grid;
-      place-content: center;
-      height: 100vh;
-      padding: 36px 36px 100px 36px;
-      grid-template-rows: 1fr;
-    }
-
-    #messages {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow-y: scroll;
-      height: 100%;
-      scroll-behavior: smooth;
-      padding-bottom: 48px;
-    }
-
-    #messages>li {
-      padding: .5rem 1rem;
-    }
-
-    #messages>li:nth-child(odd) {
-      background: #000;
-    }
-
-    #chat {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      overflow: hidden;
-      width: 350px;
-      height: 100%;
-      position: relative;
-    }
-
-    #form {
-      bottom: 0;
-      display: flex;
-      height: 48px;
-      left: 0;
-      padding: 4px;
-      position: absolute;
-      right: 0;
-    }
-
-    #input {
-      border-radius: 9999px;
-      border: 1px solid #eee;
-      flex: 1;
-      margin: 4px;
-      padding: 0 8px;
-    }
-
-    #input:focus {
-      outline: 0;
-    }
-
-    #form>button {
-      background: #09f;
-      color: #fff;
-      border: 0;
-      margin: 4px;
-      border-radius: 4px;
-    }
-
-    #form>button:hover {
-      background: #0cf;
-    }
-  </style>
 </head>
 
 <body>
-  <div id="app">
-    <h1>hola</h1>
-  </div>
+  <label class="scalable-container">
+    <input class="slider" type="checkbox" id="toggle">
+    <div class="switch">
+      <div class="suns"></div>
+      <div class="moons">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="first-moon"></div>
+      </div>
+      <div class="sand"></div>
+      <div class="bb8">
+        <div class="antennas">
+          <div class="antenna short"></div>
+          <div class="antenna long"></div>
+        </div>
+        <div class="head">
+          <div class="stripe one"></div>
+          <div class="stripe two"></div>
+          <div class="eyes">
+            <div class="eye one"></div>
+            <div class="eye two"></div>
+          </div>
+          <div class="stripe detail">
+            <div class="detail zero"></div>
+            <div class="detail zero"></div>
+            <div class="detail one"></div>
+            <div class="detail two"></div>
+            <div class="detail three"></div>
+            <div class="detail four"></div>
+            <div class="detail five"></div>
+            <div class="detail five"></div>
+          </div>
+          <div class="stripe three"></div>
+        </div>
+        <div class="ball">
+          <div class="lines one"></div>
+          <div class="lines two"></div>
+          <div class="ring one"></div>
+          <div class="ring two"></div>
+          <div class="ring three"></div>
+        </div>
+        <div class="shadow"></div>
+      </div>
+    </div>
+  </label>
+
+  <section id="chat">
+    <ul id="messages"></ul>
+    <form id="form">
+      <input type="text" name="message" id="input" placeholder="Type a message" autocomplete="off" />
+      <button type="submit">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20.7639 12H10.0556M3 8.00003H5.5M4 12H5.5M4.5 16H5.5M9.96153 12.4896L9.07002 15.4486C8.73252 16.5688 8.56376 17.1289 8.70734 17.4633C8.83199 17.7537 9.08656 17.9681 9.39391 18.0415C9.74792 18.1261 10.2711 17.8645 11.3175 17.3413L19.1378 13.4311C20.059 12.9705 20.5197 12.7402 20.6675 12.4285C20.7961 12.1573 20.7961 11.8427 20.6675 11.5715C20.5197 11.2598 20.059 11.0295 19.1378 10.5689L11.3068 6.65342C10.2633 6.13168 9.74156 5.87081 9.38789 5.95502C9.0808 6.02815 8.82627 6.24198 8.70128 6.53184C8.55731 6.86569 8.72427 7.42461 9.05819 8.54246L9.96261 11.5701C10.0137 11.7411 10.0392 11.8266 10.0493 11.9137C10.0583 11.991 10.0582 12.069 10.049 12.1463C10.0387 12.2334 10.013 12.3188 9.96153 12.4896Z"
+              stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </g>
+        </svg>
+      </button>
+    </form>
+  </section>
+
+  <script>
+    const toggleCheckbox = document.getElementById('toggle');
+
+    toggleCheckbox.addEventListener('change', () => {
+      if (toggleCheckbox.checked) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    });
+  </script>
 </body>
 
 </html>
