@@ -8,23 +8,7 @@
   <link rel="stylesheet" href="/styles/styles.css">
   <title>Realtime - Chat</title>
 
-  <script type="module">
-    import { io } from 'https://cdn.socket.io/4.8.0/socket.io.esm.min.js'
 
-    const socket = io('https://realtime-chat-ten-nu.vercel.app/')
-
-    const form = document.getElementById('form')
-    const input = document.getElementById('input')
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault()
-
-      if (input.value) {
-        socket.emit('chat message', input.value)
-        input.value = ''
-      }
-    })
-  </script>
 </head>
 
 <header>
@@ -98,6 +82,24 @@
       </button>
     </form>
   </section>
+
+  <script type="module">
+    import { io } from 'https://cdn.socket.io/4.8.0/socket.io.esm.min.js'
+
+    const socket = io('https://realtime-chat-ten-nu.vercel.app/')
+
+    const form = document.getElementById('form')
+    const input = document.getElementById('input')
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      if (input.value) {
+        socket.emit('chat message', input.value)
+        input.value = ''
+      }
+    })
+  </script>
 
   <script>
     const toggleCheckbox = document.getElementById('toggle');
