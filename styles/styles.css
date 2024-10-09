@@ -26,9 +26,9 @@
     --input-background: #3c3c3c;
     --button-background: #007bff;
     --button-hover-background: #0056b3;
-    --text-color: #fff;
-    --message-odd-background: #444;
-    --message-even-background: #555;
+    --text-color: #ffffffcc;
+    --message-odd-background: #6b86a1;
+    --message-even-background: #5a7e6e;
 }
 
 #title {
@@ -67,7 +67,7 @@ body {
 
 #messages {
     list-style-type: none;
-    margin: 0;
+    margin: 20px;
     padding: 16px;
     flex: 1;
     overflow-y: auto;
@@ -78,18 +78,36 @@ body {
 
 #messages>li {
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-bottom: 10px;
     color: var(--text-color);
+    max-width: 70%;
+    position: relative;
 }
 
-#messages>li:nth-child(odd) {
+#messages>li p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.user1 {
     background: var(--message-odd-background);
+    align-self: flex-start;
 }
 
-#messages>li:nth-child(even) {
+.user2 {
     background: var(--message-even-background);
+    margin-left: 100px;
 }
+
+#messages>li small {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+    text-align: right;
+}
+
 
 #form {
     display: flex;
@@ -106,6 +124,7 @@ body {
     margin-right: 10px;
     outline: none;
     transition: border 0.3s;
+    color: var(--text-color);
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
