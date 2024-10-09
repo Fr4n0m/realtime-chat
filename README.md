@@ -1,5 +1,12 @@
 # Real-Time Chat Project
 
+
+![realtime-chat_1](https://github.com/user-attachments/assets/84031245-95b2-446d-bf73-d9f944e3082a)
+![realtime-chat_2](https://github.com/user-attachments/assets/22812ede-e503-485a-bcf2-e153db98246c)
+
+
+---
+
 > [!NOTE]
 > Los mensajes mostrados en la demo son de prueba ya que vercel no permite websocket.
 
