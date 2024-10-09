@@ -2,6 +2,14 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import path from "path";
+
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://uarblvxkkgphukrzilrc.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhcmJsdnhra2dwaHVrcnppbHJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjg0ODYyMDYsImV4cCI6MjA0NDA2MjIwNn0.9YTK-wQhFJIs05DaNaRo82gIl14Z32t1DQJ4pyyYkXU";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 /* import dotenv from "dotenv";
  */
 import { Server } from "socket.io";
@@ -13,81 +21,61 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://realtime-chat-ten-nu.vercel.app/",
+];
+
 // Configuración de socket.io
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
 io.on("connection", (socket) => {
-  console.log("a user has connected!");
+  console.log("A user has connected!");
 
   socket.on("disconnect", () => {
-    console.log("an user has disconnected");
-  });
-
-  socket.on("chat message", (msg) => {
-    console.log("message: " + msg);
-    io.emit("chat message", msg);
-  });
-});
-
-/* const db = createClient({
-  url: "libsql://cuddly-wasp-midudev.turso.io",
-  authToken: process.env.DB_TOKEN,
-}); */
-
-/* await db.execute(`
-    CREATE TABLE IF NOT EXISTS messages (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      content TEXT,
-      user TEXT
-    )
-  `);
-
-io.on("connection", async (socket) => {
-  console.log("a user has connected!");
-
-  socket.on("disconnect", () => {
-    console.log("an user has disconnected");
+    console.log("A user has disconnected");
   });
 
   socket.on("chat message", async (msg) => {
-    let result;
     const username = socket.handshake.auth.username ?? "anonymous";
     console.log({ username });
+
     try {
-      result = await db.execute({
-        sql: "INSERT INTO messages (content, user) VALUES (:msg, :username)",
-        args: { msg, username },
-      });
+      const { data, error } = await supabase
+        .from("messages")
+        .insert([{ content: msg, user: username }]);
+
+      if (error) throw error;
+
+      io.emit("chat message", msg, data[0].id.toString(), username);
     } catch (e) {
       console.error(e);
-      return;
     }
-
-    io.emit("chat message", msg, result.lastInsertRowid.toString(), username);
   });
 
-  if (!socket.recovered) {
+  socket.on("fetch messages", async () => {
     try {
-      const results = await db.execute({
-        sql: "SELECT id, content, user FROM messages WHERE id > ?",
-        args: [socket.handshake.auth.serverOffset ?? 0],
-      });
+      const { data: messages, error } = await supabase
+        .from("messages")
+        .select("*");
 
-      results.rows.forEach((row) => {
+      if (error) throw error;
+
+      messages.forEach((row) => {
         socket.emit("chat message", row.content, row.id.toString(), row.user);
       });
     } catch (e) {
       console.error(e);
     }
-  }
-}); */
+  });
+});
 
 // Middleware para registrar las solicitudes
 app.use(logger("dev"));
