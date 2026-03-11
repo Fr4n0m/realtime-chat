@@ -1,6 +1,4 @@
 @import "darkmode-button.css";
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 
 *,
@@ -168,4 +166,53 @@ svg {
 
 #toggle-button:hover {
     background: var(--button-hover-background);
+}
+
+.project-popup {
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+.project-popup::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.project-popup__card {
+    width: min(92vw, 420px);
+    margin: 0;
+    border-radius: 16px;
+    padding: 24px 20px;
+    background: var(--chat-background);
+    color: var(--text-color);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    font-family: "Roboto", sans-serif;
+}
+
+.project-popup__card h2 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+}
+
+.project-popup__card p {
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.project-popup__card a {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--button-background);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.project-popup__card button {
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    background: var(--button-background);
+    color: #fff;
+    cursor: pointer;
 }
