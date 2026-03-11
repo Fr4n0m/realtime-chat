@@ -17,6 +17,7 @@ export const bootstrapClient = () => {
   const form = getRequiredElement("form");
   const input = getRequiredElement("input");
   const messages = getRequiredElement("messages");
+  const projectPanel = getRequiredElement("project-panel");
   const toggle = getRequiredElement("toggle");
   initThemeToggle(toggle);
 
@@ -25,10 +26,14 @@ export const bootstrapClient = () => {
       form,
       input,
       messages,
+      panel: projectPanel,
+      username: config.username,
       githubUrl: config.githubUrl,
     });
     return;
   }
+
+  projectPanel.remove();
 
   const socket = createChatSocket({
     socketUrl: config.socketUrl,

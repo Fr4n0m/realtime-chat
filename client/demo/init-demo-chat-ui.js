@@ -1,18 +1,30 @@
-import { createProjectPopup } from "./create-project-popup.js";
+import { createMessageRenderer } from "../chat/create-message-renderer.js";
+import { createProjectPanel } from "./create-project-panel.js";
 
-export const initDemoChatUi = ({ form, input, messages, githubUrl }) => {
-  const showPopup = createProjectPopup({ githubUrl });
+export const initDemoChatUi = ({
+  form,
+  input,
+  messages,
+  panel,
+  username,
+  githubUrl,
+}) => {
+  createProjectPanel({ panel, githubUrl });
+  const renderer = createMessageRenderer({
+    messagesElement: messages,
+    username,
+  });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    showPopup();
-  });
+    const content = input.value.trim();
 
-  input.addEventListener("focus", () => {
-    showPopup();
-  });
+    if (!content) return;
 
-  messages.addEventListener("click", () => {
-    showPopup();
+    renderer.appendMessage({
+      content,
+      author: username,
+    });
+    input.value = "";
   });
 };

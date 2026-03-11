@@ -168,51 +168,64 @@ svg {
     background: var(--button-hover-background);
 }
 
-.project-popup {
-    border: none;
-    padding: 0;
-    background: transparent;
-}
-
-.project-popup::backdrop {
-    background: rgba(0, 0, 0, 0.55);
-}
-
-.project-popup__card {
-    width: min(92vw, 420px);
-    margin: 0;
-    border-radius: 16px;
-    padding: 24px 20px;
+.project-panel__card {
+    width: min(240px, 26vw);
+    border-radius: 14px;
+    padding: 16px 14px;
     background: var(--chat-background);
     color: var(--text-color);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: "Roboto", sans-serif;
 }
 
-.project-popup__card h2 {
+.project-panel__card h2 {
     margin: 0 0 10px;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
-.project-popup__card p {
+.project-panel__card p {
     margin: 0 0 10px;
-    line-height: 1.4;
+    line-height: 1.35;
+    font-size: 0.9rem;
 }
 
-.project-popup__card a {
+.project-panel__card a {
     display: inline-block;
     margin-top: 6px;
     color: var(--button-background);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.project-popup__card button {
-    margin-top: 18px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 14px;
-    background: var(--button-background);
-    color: #fff;
-    cursor: pointer;
+#project-panel {
+    position: fixed;
+    top: 50%;
+    left: calc(50% + 230px);
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+@media (max-width: 900px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    #chat {
+        height: min(65vh, 600px);
+    }
+
+    #project-panel {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        top: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 360px);
+    }
+
+    .project-panel__card {
+        width: 100%;
+    }
 }
