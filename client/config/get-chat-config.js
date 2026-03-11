@@ -1,7 +1,7 @@
 const storageKey = "chat:username";
 const defaultMode = "demo";
 const supportedModes = new Set(["demo", "live"]);
-const defaultGithubUrl = "https://github.com/Fran1799/realtime-chat";
+const defaultGithubUrl = "https://github.com/Fr4n0m/realtime-chat";
 
 const getOrCreateUsername = () => {
   const savedUsername = localStorage.getItem(storageKey);
