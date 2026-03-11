@@ -73,8 +73,7 @@ npm run audit
 ## Automated quality
 
 - Unit tests run with Vitest.
-- CI workflow is defined at `.github/workflows/ci.yml`.
-- Every push/PR to `main` runs install, tests, build and dependency audit.
+- Run quality checks locally before every commit: `npm run test`, `npm run build`, `npm run audit`.
 
 ## License
 
