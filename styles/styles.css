@@ -7,6 +7,7 @@
 }
 
 :root {
+    --shell-width: min(92vw, 430px);
     --background-color: #eef3f8;
     --background-accent-1: #dce9ff;
     --background-accent-2: #d6f2eb;
@@ -64,7 +65,7 @@ header {
 }
 
 #chat-shell {
-    width: min(92vw, 430px);
+    width: var(--shell-width);
 }
 
 #title {
@@ -219,7 +220,7 @@ header {
 }
 
 .project-panel__card {
-    width: min(230px, 24vw);
+    width: 100%;
     border-radius: 14px;
     padding: 14px 13px;
     background: color-mix(in srgb, var(--chat-background) 88%, #ffffff 12%);
@@ -268,6 +269,7 @@ header {
     top: 50%;
     left: calc(50% + 250px);
     transform: translateY(-50%);
+    width: var(--shell-width);
     z-index: 10;
 }
 
@@ -332,9 +334,14 @@ header {
 }
 
 @media (max-width: 1024px) {
+    :root {
+        --shell-width: min(94vw, 840px);
+    }
+
     body {
         justify-content: flex-start;
-        padding: calc(14px + env(safe-area-inset-top)) 14px 18px;
+        min-height: 100svh;
+        padding: calc(14px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom));
     }
 
     header {
@@ -349,13 +356,13 @@ header {
     }
 
     #chat-shell {
-        width: min(96vw, 460px);
+        width: var(--shell-width);
     }
 
     #chat {
         width: 100%;
-        height: min(62vh, 580px);
-        min-height: 430px;
+        height: clamp(620px, 76svh, 980px);
+        min-height: 620px;
     }
 
     #messages {
@@ -366,8 +373,9 @@ header {
     #project-panel {
         position: static;
         transform: none;
-        width: min(96vw, 460px);
+        width: var(--shell-width);
         margin-top: 12px;
+        margin-bottom: 8px;
     }
 
     .project-panel__card {
@@ -382,15 +390,40 @@ header {
         width: 76px;
         height: 42px;
         margin-right: 0;
+        margin-top: 6px;
     }
 
     #site-footer {
         position: static;
         gap: 10px;
         font-size: 0.76rem;
-        flex-direction: column;
-        width: min(96vw, 460px);
+        flex-direction: row;
+        justify-content: center;
+        width: var(--shell-width);
         align-items: center;
-        margin-top: 12px;
+        margin-top: auto;
+        padding-top: 10px;
+        transform: none;
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --shell-width: min(96vw, 440px);
+    }
+
+    #chat-shell {
+        width: var(--shell-width);
+    }
+
+    #chat {
+        height: min(68svh, 620px);
+        min-height: 430px;
+    }
+
+    #site-footer {
+        width: var(--shell-width);
+        flex-direction: column;
+        gap: 6px;
     }
 }
