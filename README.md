@@ -1,7 +1,7 @@
 # Realtime Chat
 
-![realtime-chat_1](https://github.com/user-attachments/assets/84031245-95b2-446d-bf73-d9f944e3082a)
-![realtime-chat_2](https://github.com/user-attachments/assets/22812ede-e503-485a-bcf2-e153db98246c)
+![realtime-chat_1](docs/images/realtime-chat-ui-desktop.webp)
+![realtime-chat_2](docs/images/realtime-chat-ui-mobile.webp)
 
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)
