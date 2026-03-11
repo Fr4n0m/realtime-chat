@@ -1,140 +1,96 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/styles.css" />
   <title>Realtime - Chat</title>
-
-  <script type="module">
-    import { io } from 'https://cdn.socket.io/4.8.0/socket.io.esm.min.js'
-
-    /*const getUsername = async () => {
-      const username = localStorage.getItem('username');
-      if (username) {
-        console.log(`User existed ${username}`);
-        return username;
-      }
-
-      const res = await fetch('https://random-data-api.com/api/users/random_user');
-      const { username: randomUsername } = await res.json();
-
-      localStorage.setItem('username', randomUsername);
-      return randomUsername;
-    };*/
-
-    const allowedOrigins = [
-      "http://localhost:4000",
-      "https://realtime-chat-ten-nu.vercel.app/",
-    ];
-
-    const socket = io(allowedOrigins /* , {
-      auth: {
-        username: await getUsername(),
-        serverOffset: 0
-      }
-    } */);
-
-    const form = document.getElementById('form')
-    const input = document.getElementById('input')
-    const messages = document.getElementById('messages');
-
-    socket.on('chat message', (msg, serverOffset, username) => {
-      const item = `<li>
-        <p>${msg}</p>
-        <small>${username}</small>
-      </li>`;
-      messages.insertAdjacentHTML('beforeend', item);
-      socket.auth.serverOffset = serverOffset;
-      messages.scrollTop = messages.scrollHeight;
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (input.value) {
-        socket.emit('chat message', input.value);
-        input.value = '';
-      }
-    });
-  </script>
+  <script type="module" src="/main.js"></script>
 </head>
 
-<header>
-  <h1 id="title">Fran1799 Chat</h1>
-  <label class="scalable-container">
-    <input class="slider" type="checkbox" id="toggle">
-    <div class="switch">
-      <div class="suns"></div>
-      <div class="moons">
-        <div class="star star-1"></div>
-        <div class="star star-2"></div>
-        <div class="star star-3"></div>
-        <div class="star star-4"></div>
-        <div class="star star-5"></div>
-        <div class="first-moon"></div>
-      </div>
-      <div class="sand"></div>
-      <div class="bb8">
-        <div class="antennas">
-          <div class="antenna short"></div>
-          <div class="antenna long"></div>
-        </div>
-        <div class="head">
-          <div class="stripe one"></div>
-          <div class="stripe two"></div>
-          <div class="eyes">
-            <div class="eye one"></div>
-            <div class="eye two"></div>
-          </div>
-          <div class="stripe detail">
-            <div class="detail zero"></div>
-            <div class="detail zero"></div>
-            <div class="detail one"></div>
-            <div class="detail two"></div>
-            <div class="detail three"></div>
-            <div class="detail four"></div>
-            <div class="detail five"></div>
-            <div class="detail five"></div>
-          </div>
-          <div class="stripe three"></div>
-        </div>
-        <div class="ball">
-          <div class="lines one"></div>
-          <div class="lines two"></div>
-          <div class="ring one"></div>
-          <div class="ring two"></div>
-          <div class="ring three"></div>
-        </div>
-        <div class="shadow"></div>
-      </div>
-    </div>
-  </label>
-</header>
-
 <body>
+  <header>
+    <h1 id="title">Socket.io Chat</h1>
+    <label class="scalable-container">
+      <input class="slider" type="checkbox" id="toggle" />
+      <div class="switch">
+        <div class="suns"></div>
+        <div class="moons">
+          <div class="star star-1"></div>
+          <div class="star star-2"></div>
+          <div class="star star-3"></div>
+          <div class="star star-4"></div>
+          <div class="star star-5"></div>
+          <div class="first-moon"></div>
+        </div>
+        <div class="sand"></div>
+        <div class="bb8">
+          <div class="antennas">
+            <div class="antenna short"></div>
+            <div class="antenna long"></div>
+          </div>
+          <div class="head">
+            <div class="stripe one"></div>
+            <div class="stripe two"></div>
+            <div class="eyes">
+              <div class="eye one"></div>
+              <div class="eye two"></div>
+            </div>
+            <div class="stripe detail">
+              <div class="detail zero"></div>
+              <div class="detail zero"></div>
+              <div class="detail one"></div>
+              <div class="detail two"></div>
+              <div class="detail three"></div>
+              <div class="detail four"></div>
+              <div class="detail five"></div>
+              <div class="detail five"></div>
+            </div>
+            <div class="stripe three"></div>
+          </div>
+          <div class="ball">
+            <div class="lines one"></div>
+            <div class="lines two"></div>
+            <div class="ring one"></div>
+            <div class="ring two"></div>
+            <div class="ring three"></div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </label>
+  </header>
 
   <section id="chat">
     <ul id="messages">
-      <li class="user1">
-        <p>Hola, ¿cómo estás?</p><small>Usuario1</small>
+      <li class="user1" data-mock="true">
+        <p>Hi, how are you?</p>
+        <small>User1</small>
       </li>
-      <li class="user2">
-        <p>Todo bien, gracias. ¿Y tú?</p><small>Usuario2</small>
+      <li class="user2" data-mock="true">
+        <p>Doing well, thanks. How about you?</p>
+        <small>User2</small>
       </li>
-      <li class="user1">
-        <p>Bien, trabajando en un proyecto de chat.</p><small>Usuario1</small>
+      <li class="user1" data-mock="true">
+        <p>Great, working on a chat project.</p>
+        <small>User1</small>
       </li>
-      <li class="user2">
-        <p>¡Eso suena interesante!</p><small>Usuario2</small>
+      <li class="user2" data-mock="true">
+        <p>That sounds interesting!</p>
+        <small>User2</small>
       </li>
     </ul>
 
     <form id="form">
       <input type="text" name="message" id="input" placeholder="Type a message" autocomplete="off" />
-      <button type="submit">
+      <button type="submit" aria-label="Send message">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -147,19 +103,7 @@
       </button>
     </form>
   </section>
-
-  <script>
-    const toggleCheckbox = document.getElementById('toggle');
-
-    toggleCheckbox.addEventListener('change', () => {
-      if (toggleCheckbox.checked) {
-        document.body.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-      }
-    });
-  </script>
+  <aside id="project-panel" aria-live="polite"></aside>
 </body>
-
 
 </html>

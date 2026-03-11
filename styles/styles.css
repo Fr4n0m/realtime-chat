@@ -1,6 +1,4 @@
 @import "darkmode-button.css";
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 
 *,
@@ -168,4 +166,66 @@ svg {
 
 #toggle-button:hover {
     background: var(--button-hover-background);
+}
+
+.project-panel__card {
+    width: min(240px, 26vw);
+    border-radius: 14px;
+    padding: 16px 14px;
+    background: var(--chat-background);
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Roboto", sans-serif;
+}
+
+.project-panel__card h2 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.project-panel__card p {
+    margin: 0 0 10px;
+    line-height: 1.35;
+    font-size: 0.9rem;
+}
+
+.project-panel__card a {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--button-background);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+#project-panel {
+    position: fixed;
+    top: 50%;
+    left: calc(50% + 230px);
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+@media (max-width: 900px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    #chat {
+        height: min(65vh, 600px);
+    }
+
+    #project-panel {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        top: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 360px);
+    }
+
+    .project-panel__card {
+        width: 100%;
+    }
 }
